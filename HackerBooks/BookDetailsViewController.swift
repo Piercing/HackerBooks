@@ -10,14 +10,48 @@ import UIKit
 
 class BookDetailsViewController: UIViewController {
     
-    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelTitle: UILabel!{
+        didSet {
+            labelTitle.textColor = UIColor.purpleColor()
+        }
+    }
     
-    @IBOutlet weak var labelAuthors: UILabel!
     
-    @IBOutlet weak var labelTags: UILabel!
+    @IBOutlet weak var labelAuthors: UILabel!{
+        didSet {
+            labelAuthors.textColor = UIColor.yellowColor()
+        }
+    }
+    
+    
+    @IBOutlet weak var labelTags: UILabel!{
+        didSet {
+            labelTags.tintColor = UIColor.magentaColor()
+        }
+    }
     
     @IBOutlet weak var imageBook: UIImageView!
-
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        labelTitle = UILabel()
+        labelAuthors = UILabel()
+        labelTags = UILabel()
+        imageBook = UIImageView()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    convenience  init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    
+    
     @IBAction func buttonViewPDF(sender: UIButton) {
         
         let ourStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -30,7 +64,7 @@ class BookDetailsViewController: UIViewController {
         
     }
     
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -70,6 +70,7 @@ class LibraryTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let label = CGRectMake(10, 0, tableView.frame.size.width, 40.0)
         let view = UIView()
         let title = UILabel(frame: label)
@@ -99,8 +100,8 @@ class LibraryTableViewController: UITableViewController {
             let visorBook : BookDetailsViewController = segue.destinationViewController as! BookDetailsViewController
             
             let tag = Utils.util.tags[bookSelected]
-            let booksForTag = Utils.util.booksByTag(tag)
-            let book = booksForTag?[bookSelected]
+            let booksByTag = Utils.util.booksByTag(tag)
+            let book = booksByTag?[bookSelected]
             
             visorBook.labelTitle.text = book?.title
             visorBook.labelAuthors.text = book?.authors.joinWithSeparator(",")
