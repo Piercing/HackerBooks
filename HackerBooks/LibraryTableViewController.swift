@@ -98,11 +98,11 @@ class LibraryTableViewController: UITableViewController {
             
             
             let visorBook: BookDetailsViewController = segue.destinationViewController as! BookDetailsViewController
-            let indexPath = self.tableView.indexPathForSelectedRow?.row
+            let indexPath = self.tableView.indexPathForSelectedRow
             
-            let tag = Utils.util.tags[indexPath!]
+            let tag = Utils.util.tags[indexPath!.section]
             let booksForTag = Utils.util.booksByTag(tag)
-            let book = booksForTag?[indexPath!]
+            let book = booksForTag?[indexPath!.row]
             
             visorBook.titleBook = (book?.title)!
             visorBook.authorsBook = (book?.authors)!
@@ -111,12 +111,6 @@ class LibraryTableViewController: UITableViewController {
             if let imagePath = Utils.util.getPath((book?.urlImage)!) {
                 visorBook.imageBook = UIImage(contentsOfFile: imagePath)
             }
-            
-            
-            //            visorBook.labelTitle.text = book?.title
-            //            visorBook.labelAuthors.text = book?.authors.joinWithSeparator(",")
-            //            visorBook.labelTags.text = book?.tags.joinWithSeparator(",")
-            
         }
     }
     
