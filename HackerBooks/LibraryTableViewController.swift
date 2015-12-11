@@ -70,7 +70,6 @@ class LibraryTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let label = CGRectMake(10, 0, tableView.frame.size.width, 40.0)
         let view = UIView()
         let title = UILabel(frame: label)
@@ -81,35 +80,43 @@ class LibraryTableViewController: UITableViewController {
         return view
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        bookSelected = indexPath.row
-        
-        self.performSegueWithIdentifier("toBookDetails", sender: bookSelected)
-        
-    }
+    //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //
+    //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    //        bookSelected = indexPath.row
+    //
+    //        self.performSegueWithIdentifier("toBookDetails", sender: bookSelected)
+    //
+    //    }
     
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  
+        
         if segue.identifier == "toBookDetails"{
             
-            let visorBook : BookDetailsViewController = segue.destinationViewController as! BookDetailsViewController
             
-            let tag = Utils.util.tags[bookSelected]
-            let booksByTag = Utils.util.booksByTag(tag)
-            let book = booksByTag?[bookSelected]
+            let visorBook: BookDetailsViewController = segue.destinationViewController as! BookDetailsViewController
+            let indexPath = self.tableView.indexPathForSelectedRow?.row
             
-            visorBook.labelTitle.text = book?.title
-            visorBook.labelAuthors.text = book?.authors.joinWithSeparator(",")
-            visorBook.labelTags.text = book?.tags.joinWithSeparator(",")
+            let tag = Utils.util.tags[indexPath!]
+            let booksForTag = Utils.util.booksByTag(tag)
+            let book = booksForTag?[indexPath!]
+            
+            visorBook.titleBook = (book?.title)!
+            visorBook.authorsBook = (book?.authors)!
+            visorBook.tagsBook = (book?.tags)!
             
             if let imagePath = Utils.util.getPath((book?.urlImage)!) {
-                visorBook.imageBook.image = UIImage(contentsOfFile: imagePath)
+                visorBook.imageBook = UIImage(contentsOfFile: imagePath)
             }
+            
+            
+            //            visorBook.labelTitle.text = book?.title
+            //            visorBook.labelAuthors.text = book?.authors.joinWithSeparator(",")
+            //            visorBook.labelTags.text = book?.tags.joinWithSeparator(",")
+            
         }
     }
     

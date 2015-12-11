@@ -8,11 +8,24 @@
 
 import UIKit
 
+
+
+
 class BookDetailsViewController: UIViewController {
+    
+    var titleBook = ""
+    var authorsBook = [String]()
+    var tagsBook = [String]()
+    var imagBook = UIImage()
+    
+    //            visorBook.labelTitle.text = book?.title
+    //            visorBook.labelAuthors.text = book?.authors.joinWithSeparator(",")
+    //            visorBook.labelTags.text = book?.tags.joinWithSeparator(",")
     
     @IBOutlet weak var labelTitle: UILabel!{
         didSet {
             labelTitle.textColor = UIColor.purpleColor()
+            labelTitle.text = titleBook
         }
     }
     
@@ -20,6 +33,7 @@ class BookDetailsViewController: UIViewController {
     @IBOutlet weak var labelAuthors: UILabel!{
         didSet {
             labelAuthors.textColor = UIColor.yellowColor()
+            labelAuthors.text = authorsBook.joinWithSeparator(",")
         }
     }
     
@@ -27,27 +41,33 @@ class BookDetailsViewController: UIViewController {
     @IBOutlet weak var labelTags: UILabel!{
         didSet {
             labelTags.tintColor = UIColor.magentaColor()
+            labelTags.text = tagsBook.joinWithSeparator(",")
         }
     }
     
-    @IBOutlet weak var imageBook: UIImageView!
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    @IBOutlet weak var imageBook: UIImage!{
+        
+        didSet{
+            imageBook = imagBook
+        }
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        labelTitle = UILabel()
-        labelAuthors = UILabel()
-        labelTags = UILabel()
-        imageBook = UIImageView()
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     
-    convenience  init() {
-        self.init(nibName: nil, bundle: nil)
-    }
+    //    required init?(coder aDecoder: NSCoder) {
+    //        super.init(coder: aDecoder)
+    //    }
+    //
+    //    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    //        labelTitle = UILabel()
+    //        labelAuthors = UILabel()
+    //        labelTags = UILabel()
+    //        imageBook = UIImageView()
+    //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    //    }
+    //
+    //    convenience  init() {
+    //        self.init(nibName: nil, bundle: nil)
+    //    }
     
     
     
@@ -64,7 +84,9 @@ class BookDetailsViewController: UIViewController {
         
     }
     
- 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,5 +108,17 @@ class BookDetailsViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
